@@ -1,0 +1,261 @@
+/* =============================================================================
+   Helper Classes and Mixins
+   ========================================================================== */	
+
+	/* MIXINS
+       ============================================== */
+		
+		//Cor de Seleção
+       .selection(@bg:#3297FD,@color:#fff){
+       	::selection {
+			background:@bg;
+			color:@color;
+		}
+		::-moz-selection {
+			background:@bg;
+			color:@color;
+		}
+		::-webkit-selection {
+			background:@bg;
+			color:@color;
+		}
+       }
+
+		//Opacidade	
+		.opacity(@opacity) {
+		  opacity: @opacity / 100;
+		  filter: ~"alpha(opacity=@{opacity})";
+		}		
+
+		// Box Sizing
+	    .boxsizing(@boxmodel: border-box) {
+		  -webkit-box-sizing: @boxmodel !important;
+		     -moz-box-sizing: @boxmodel !important;
+		      -ms-box-sizing: @boxmodel !important;
+		          box-sizing: @boxmodel !important;
+		}
+
+		// Arredondar cantos do elemento
+		.radius(@radius: 5px) {
+		  -webkit-border-radius: @radius;
+		     -moz-border-radius: @radius;		         
+		          border-radius: @radius;		               
+		}
+
+		// Sombra na Box
+		.shadow(@shadow) {
+		  -webkit-box-shadow: @shadow;
+		     -moz-box-shadow: @shadow;
+		          box-shadow: @shadow;
+		}
+
+		// align text
+		.align-left {
+			text-align: left !important;
+		}
+		.align-center {
+			text-align: center !important;
+		}
+		.align-right {
+			text-align: right !important;
+		}
+		.align-middle {
+			vertical-align: middle !important;
+		}
+
+		// Fix 
+		.fix{
+			-webkit-backface-visibility:hidden;
+			   -moz-backface-visibility:hidden;
+			    -ms-backface-visibility:hidden;
+			        backface-visibility:hidden;
+		}
+
+		// before after content
+		.before-after {
+			width: 100%;
+			height: 100%;
+			content: '';
+			z-index: 2;
+			position: absolute;
+		}
+
+		// Aceleração 3D
+		.translate3d{
+		  -webkit-transform: translate3d(0);
+		     -moz-transform: translate3d(0);
+		      -ms-transform: translate3d(0);
+		       -o-transform: translate3d(0);
+		          transform: translate3d(0);
+		}
+
+
+	    // Transition
+	    .transition(@time: 0.25s, @animate: ease-in-out) {	
+			-webkit-transition: @time @animate;
+			   -moz-transition: @time @animate;		
+			    -ms-transition: @time @animate;		
+			     -o-transition: @time @animate;
+			        transition: @time @animate;
+		}
+
+		// Transition Delay
+		.delay(@time) {	
+			-webkit-transition-delay: @time !important;
+			   -moz-transition-delay: @time !important;		
+			    -ms-transition-delay: @time !important;		
+			     -o-transition-delay: @time !important;
+			        transition-delay: @time !important;
+		}
+
+		// Transformations
+		.rotate(@degrees) {
+		  -webkit-transform: rotate(@degrees);
+		     -moz-transform: rotate(@degrees);
+		      -ms-transform: rotate(@degrees);
+		       -o-transform: rotate(@degrees);
+		          transform: rotate(@degrees);
+		}
+
+		.scale(@ratio) {
+		  -webkit-transform: scale(@ratio);
+		     -moz-transform: scale(@ratio);
+		      -ms-transform: scale(@ratio);
+		       -o-transform: scale(@ratio);
+		          transform: scale(@ratio);
+		}
+		.translate(@x, @y) {
+		  -webkit-transform: translate(@x, @y);
+		     -moz-transform: translate(@x, @y);
+		      -ms-transform: translate(@x, @y);
+		       -o-transform: translate(@x, @y);
+		          transform: translate(@x, @y); 
+		}
+		
+		// Background
+        .bg(@filename, @repeat: no-repeat) {
+            background-repeat: @repeat;
+           background-image: e(%('url(../img/%s)', @filename));
+        }
+
+		// Cor do placeholder 
+		.placeholder(@color: inherit, @focuscolor: transparent) {		
+			&:-moz-placeholder {
+				.transition;
+			  	color: @color;						
+			}
+			&::-moz-placeholder {
+				.transition;
+   					color: @color;  
+			}
+			&:-ms-input-placeholder {
+				.transition;
+			  	color: @color;						
+			}
+			&::-webkit-input-placeholder {
+				.transition;
+			  	color: @color;						
+			}
+			&:focus{
+				&:-moz-placeholder {				
+				  color: @focuscolor;						
+				}
+				&::-moz-placeholder {
+	   				color: @focuscolor;  
+				}
+				&:-ms-input-placeholder {				
+				  color: @focuscolor;						
+				}
+				&::-webkit-input-placeholder {			
+				  color: @focuscolor;						
+				}
+			}
+		}
+
+		.margin(@margin){
+			margin-left: @margin;
+			&:first-child{
+				margin-left: 0;
+			}
+		}
+
+		// Fix
+		.clearfix {
+			*zoom: 1;
+		  	&:before,
+		  	&:after {
+			    display: table;
+			    content: "";
+			  }
+			  &:after {
+			    clear: both;
+			  }
+		}	
+
+		// Flutuar elemento para esquerda
+		.left{
+			float: left !important;
+		}
+
+		// Flutuar elemento para direita
+		.right{
+			float: right !important;
+		}				
+
+		// Cursor pointer
+		.pointer{
+			cursor: pointer;
+		}	
+
+		// Mudar o cursor para Default quando o elemento já estiver ativo
+		.active{
+			cursor: default;
+		}
+
+		// Mostrar elemento
+		.show {
+			display: block;
+		}
+		
+		// Esconder Elemento
+		.hide {
+			display: none !important;			
+		}		
+		
+		// Texto assistivo (Usabilidade)	
+		.assistivetext{
+			position: absolute !important;
+			clip: rect(1px 1px 1px 1px);
+			clip: rect(1px, 1px, 1px, 1px);
+		}
+
+		// Esconder texto (Text-indent)
+		.hidetext{			
+			text-indent: 200%;
+			white-space: nowrap;			
+			   overflow: hidden;
+		}
+
+		.nowrap { 
+			white-space: nowrap !important;
+		}	
+
+		//Visualmente, o elemento fica escondido para os usuários, mas não para leitores de tela e web spiders
+		.visuallyhidden {
+		    border: 0;
+		    clip: rect(0 0 0 0);
+		    height: 1px;
+		    width: 1px;
+		    margin: -1px;
+		    overflow: hidden;
+		    padding: 0;
+		    position: absolute;
+		}
+
+		.absolutemask{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}

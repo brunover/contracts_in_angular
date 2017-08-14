@@ -1,0 +1,399 @@
+
+<!-- Show / Hide columns -->
+<button type="button" class="btn btn-primary margin-bottom" data-toggle="modal" data-target="#hideShowColumnsModal">
+Mostrar / Esconder colunas
+</button>
+
+<!-- Search contracts -->
+<div class="row">
+	<!-- Search -->
+	<div class="col-lg-6">
+		<input type="text" class="form-control margin-bottom" ng-model="lines" placeholder="Pesquisar contratos...">
+	</div>
+
+	<!-- Undo filter -->
+	<div class="col-lg-6">
+		<button type="button" class="btn btn-default margin-bottom" ng-click="fieldName = null; reverseSort = false; lines = ''">Desfazer filtragem</button>
+	</div>
+</div>
+
+
+<!-- Contracts table -->
+<table class="table table-striped table-bordered table-hover table-responsive">
+	<thead>
+		<tr>
+			<th class="align-center align-middle">&nbsp;</th>
+			<th class="align-center align-middle pointer">
+				<a href="javascript:void(0)" ng-click="sortBy('Código')" class="th-link" >
+					Código
+					<span ng-show="fieldName == 'Código'">
+						<span ng-show="!reverseSort" class="fa fa-angle-up"></span>
+						<span ng-show="reverseSort" class="fa fa-angle-down"></span>
+					</span>
+				</a>
+			</th>
+			<th class="align-middle pointer" ng-hide="classData">
+				<a href="javascript:void(0)" ng-click="sortBy('Data acordo comercial')" class="th-link" >
+					Data acordo comercial
+					<span ng-show="fieldName == 'Data acordo comercial'">
+						<span ng-show="!reverseSort" class="fa fa-angle-up"></span>
+						<span ng-show="reverseSort" class="fa fa-angle-down"></span>
+					</span>
+				</a>
+			</th>
+			<th class="align-middle pointer" ng-hide="classNatureza">
+				<a href="javascript:void(0)" ng-click="sortBy('Natureza')" class="th-link" >
+					Natureza
+					<span ng-show="fieldName == 'Natureza'">
+						<span ng-show="!reverseSort" class="fa fa-angle-up"></span>
+						<span ng-show="reverseSort" class="fa fa-angle-down"></span>
+					</span>
+				</a>
+			</th>
+			<th class="align-middle pointer" ng-hide="classComprador">
+				<a href="javascript:void(0)" ng-click="sortBy('Comprador')" class="th-link" >
+					Comprador
+					<span ng-show="fieldName == 'Comprador'">
+						<span ng-show="!reverseSort" class="fa fa-angle-up"></span>
+						<span ng-show="reverseSort" class="fa fa-angle-down"></span>
+					</span>
+				</a>
+			</th>
+			<th class="align-middle pointer" ng-hide="classVendedor">
+				<a href="javascript:void(0)" ng-click="sortBy('Vendedor')" class="th-link" >
+					Vendedor
+					<span ng-show="fieldName == 'Vendedor'">
+						<span ng-show="!reverseSort" class="fa fa-angle-up"></span>
+						<span ng-show="reverseSort" class="fa fa-angle-down"></span>
+					</span>
+				</a>
+			</th>
+			<th class="align-middle pointer" ng-hide="classEnergiaRef">
+				<a href="javascript:void(0)" ng-click="sortBy('Energia referência')" class="th-link" >
+					Energia referência
+					<span ng-show="fieldName == 'Energia referência'">
+						<span ng-show="!reverseSort" class="fa fa-angle-up"></span>
+						<span ng-show="reverseSort" class="fa fa-angle-down"></span>
+					</span>
+				</a>
+			</th>
+			<th class="align-middle pointer" ng-hide="classEnergiaEntre">
+				<a href="javascript:void(0)" ng-click="sortBy('Energia entregue')" class="th-link" >
+					Energia entregue
+					<span ng-show="fieldName == 'Energia entregue'">
+						<span ng-show="!reverseSort" class="fa fa-angle-up"></span>
+						<span ng-show="reverseSort" class="fa fa-angle-down"></span>
+					</span>
+				</a>
+			</th>
+			<th class="align-middle pointer" ng-hide="classStatus">
+				<a href="javascript:void(0)" ng-click="sortBy('Status aprovação')" class="th-link" >
+					Status aprovação
+					<span ng-show="fieldName == 'Status aprovação'">
+						<span ng-show="!reverseSort" class="fa fa-angle-up"></span>
+						<span ng-show="reverseSort" class="fa fa-angle-down"></span>
+					</span>
+				</a>
+			</th>
+			<th class="align-middle pointer" ng-hide="classModelo">
+				<a href="javascript:void(0)" ng-click="sortBy('Modelo')" class="th-link" >
+					Modelo
+					<span ng-show="fieldName == 'Modelo'">
+						<span ng-show="!reverseSort" class="fa fa-angle-up"></span>
+						<span ng-show="reverseSort" class="fa fa-angle-down"></span>
+					</span>
+				</a>
+			</th>
+			<th class="align-middle pointer" ng-hide="classPreco">
+				<a href="javascript:void(0)" ng-click="sortBy('Preço base contratado')" class="th-link" >
+					Preço base contratado
+					<span ng-show="fieldName == 'Preço base contratado'">
+						<span ng-show="!reverseSort" class="fa fa-angle-up"></span>
+						<span ng-show="reverseSort" class="fa fa-angle-down"></span>
+					</span>
+				</a>
+			</th>
+			<th class="align-middle pointer" ng-hide="classSubmercado">
+				<a href="javascript:void(0)" ng-click="sortBy('Submercado')" class="th-link" >
+					Submercado
+					<span ng-show="fieldName == 'Submercado'">
+						<span ng-show="!reverseSort" class="fa fa-angle-up"></span>
+						<span ng-show="reverseSort" class="fa fa-angle-down"></span>
+					</span>
+				</a>
+			</th>
+			<th class="align-middle pointer" ng-hide="classInicioForne">
+				<a href="javascript:void(0)" ng-click="sortBy('Início fornecimento')" class="th-link" >
+					Início fornecimento
+					<span ng-show="fieldName == 'Início fornecimento'">
+						<span ng-show="!reverseSort" class="fa fa-angle-up"></span>
+						<span ng-show="reverseSort" class="fa fa-angle-down"></span>
+					</span>
+				</a>
+			</th>
+			<th class="align-middle pointer" ng-hide="classFimForne">
+				<a href="javascript:void(0)" ng-click="sortBy('Fim fornecimento')" class="th-link" >
+					Fim fornecimento
+					<span ng-show="fieldName == 'Fim fornecimento'">
+						<span ng-show="!reverseSort" class="fa fa-angle-up"></span>
+						<span ng-show="reverseSort" class="fa fa-angle-down"></span>
+					</span>
+				</a>
+			</th>
+			<th class="align-middle pointer" ng-hide="classInicioVige">
+				<a href="javascript:void(0)" ng-click="sortBy('Início vigência')" class="th-link" >
+					Início vigência
+					<span ng-show="fieldName == 'Início vigência'">
+						<span ng-show="!reverseSort" class="fa fa-angle-up"></span>
+						<span ng-show="reverseSort" class="fa fa-angle-down"></span>
+					</span>
+				</a>
+			</th>
+			<th class="align-middle pointer" ng-hide="classFimVige">
+				<a href="javascript:void(0)" ng-click="sortBy('Fim vigência')" class="th-link" >
+					Fim vigência
+					<span ng-show="fieldName == 'Fim vigência'">
+						<span ng-show="!reverseSort" class="fa fa-angle-up"></span>
+						<span ng-show="reverseSort" class="fa fa-angle-down"></span>
+					</span>
+				</a>
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="contract in filtered = (contracts | filter: lines | localeOrderBy:fieldName:reverseSort )">
+			<!-- Edit contract -->
+			<td class="align-center">
+				<button class="btn btn-default classEditBtn" data-toggle="modal" data-target="#editContractID" ng-click="moduleEditContract({{$index}})">
+				<span class="fa fa-edit"></span> Editar</button>
+			</td>
+			<td class="align-center align-middle">{{contract['Código']}}</td>
+			<td class="align-middle" ng-hide="classData">{{contract['Data acordo comercial']}}</td>
+			<td class="align-middle" ng-hide="classNatureza">{{contract['Natureza']}}</td>
+			<td class="align-middle" ng-hide="classComprador">{{contract['Comprador']}}</td>
+			<td class="align-middle" ng-hide="classVendedor">{{contract['Vendedor']}}</td>
+			<td class="align-middle" ng-hide="classEnergiaRef">{{contract['Energia referência']}}</td>
+			<td class="align-middle" ng-hide="classEnergiaEntre">{{contract['Energia entregue']}}</td>
+			<td class="align-middle" ng-hide="classStatus">{{contract['Status aprovação']}}</td>
+			<td class="align-middle" ng-hide="classModelo">{{contract['Modelo']}}</td>
+			<td class="align-middle" ng-hide="classPreco">{{contract['Preço base contratado']}}</td>
+			<td class="align-middle" ng-hide="classSubmercado">{{contract['Submercado']}}</td>
+			<td class="align-middle" ng-hide="classInicioForne">{{contract['Início fornecimento']}}</td>
+			<td class="align-middle" ng-hide="classFimForne">{{contract['Fim fornecimento']}}</td>
+			<td class="align-middle" ng-hide="classInicioVige">{{contract['Início vigência']}}</td>
+			<td class="align-middle" ng-hide="classFimVige">{{contract['Fim vigência']}}</td>
+		</tr>
+	</tbody>
+</table>
+
+<!-- Results not found -->
+<div class="align-center" ng-show="filtered.length == 0">
+	<strong>Nenhum resultado encontrado</strong>
+</div>
+
+<!-- Modal - More Contract Info -->
+<div class="modal fade" id="editContractID" tabindex="-1" role="dialog" aria-labelledby="ediContractModal">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Informações do contrato: <strong>{{contract.codigo}}</strong></h4>
+			</div>
+			<div class="modal-body align-left">
+				<form name="formEditContract" id="formEditContractID" method="post" accept-charset="utf-8" ng-submit="submitEditContractForm()">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="form-group" ng-class="{'has-error': !contract.data}">
+								<label class="control-label" for="">Data acordo comercial</label>
+								<div class='input-group date datepicker1'>
+									<input required type='text' class="form-control" id="dataID" name="data" ng-model="contract.data">
+									<span class="input-group-addon">
+										<span class="fa fa-calendar"></span>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="form-group" ng-class="{'has-error': !contract.natureza}">
+								<label class="control-label" for="">Natureza</label>
+								<select required class="form-control" id="naturezaID" name="natureza" ng-model="contract.natureza">
+									<option value="Compra">Compra</option>
+									<option value="Venda">Venda</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="form-group" ng-class="{'has-error': !contract.comprador}">
+								<label class="control-label" for="">Comprador</label>
+								<input required type="text" class="form-control" id="compradorID" name="comprador" ng-model="contract.comprador">
+								<span class="help-block" ng-show="formEditContract.comprador.$error.required">Preencha o campo "Comprador"</span>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="form-group" ng-class="{'has-error': !contract.vendedor}">
+								<label class="control-label" for="">Vendedor</label>
+								<input required type="text" class="form-control" id="vendedorID" name="vendedor" ng-model="contract.vendedor">
+								<span class="help-block" ng-show="formEditContract.vendedor.$error.required">Preencha o campo "Vendedor"</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="form-group" ng-class="{'has-error': !contract.energiaref}">
+								<label class="control-label" for="">Energia referência</label>
+								<input required type="text" class="form-control" id="energiarefID" name="energiaref" ng-model="contract.energiaref">
+								<span class="help-block" ng-show="formEditContract.energiaref.$error.required">Preencha o campo "Energia referência"</span>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="form-group" ng-class="{'has-error': !contract.energiaentre}">
+								<label class="control-label" for="">Energia entregue</label>
+								<input required type="text" class="form-control" id="energiaentreID" name="energiaentre" ng-model="contract.energiaentre">
+								<span class="help-block" ng-show="formEditContract.energiaentre.$error.required">Preencha o campo "Energia entregue"</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="form-group" ng-class="{'has-error': !contract.status}">
+								<label class="control-label" for="">Status aprovação</label>
+								<select required class="form-control" id="statusID" name="status" ng-model="contract.status">
+									<option value="Aprovado">Aprovado</option>
+									<option value="Pendente">Pendente</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="form-group" ng-class="{'has-error': !contract.modelo}">
+								<label class="control-label" for="">Modelo</label>
+								<input required type="text" class="form-control" id="modeloID" name="modelo"
+								ng-model="contract.modelo">
+								<span class="help-block" ng-show="formEditContract.modelo.$error.required">Preencha o campo "Modelo"</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="form-group">
+								<label class="control-label" for="">Preço base contratado</label>
+								<input required type="text" class="form-control classPreco" id="precoID" name="preco"
+								ng-model="contract.preco">
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="form-group" ng-class="{'has-error': !contract.submercado}">
+								<label class="control-label" for="">Submercado</label>
+								<input required type="text" class="form-control" id="submercadoID" name="submercado"
+								ng-model="contract.submercado">
+								<span class="help-block" ng-show="formEditContract.submercado.$error.required">Preencha o campo "Submercado"</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="form-group" ng-class="{'has-error': !contract.inicioforne}">
+								<label class="control-label" for="">Início fornecimento</label>
+								<div class='input-group date datepicker2'>
+									<input required type="text" class="form-control" id="inicioforneID" name="inicioforne" ng-model="contract.inicioforne">
+									<span class="input-group-addon">
+										<span class="fa fa-calendar"></span>
+									</span>
+								</div>
+								
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="form-group" ng-class="{'has-error': !contract.fimforne}">
+								<label class="control-label" for="">Fim fornecimento</label>
+								<div class='input-group date datepicker2'>
+									<input required type="text" class="form-control" id="fimforneID" name="fimforne" ng-model="contract.fimforne">
+									<span class="input-group-addon">
+										<span class="fa fa-calendar"></span>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="form-group" ng-class="{'has-error': !contract.iniciovige}">
+								<label class="control-label" for="">Início vigência</label>
+								<div class='input-group date datepicker2'>
+									<input required type="text" class="form-control" id="iniciovigeID" name="iniciovige" ng-model="contract.iniciovige">
+									<span class="input-group-addon">
+										<span class="fa fa-calendar"></span>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="form-group" ng-class="{'has-error': !contract.fimvige}">
+								<label class="control-label" for="">Fim vigência</label>
+								<div class='input-group date datepicker2'>
+									<input required type="text" class="form-control" id="fimvigeID" name="fimvige" ng-model="contract.fimvige">
+									<span class="input-group-addon">
+										<span class="fa fa-calendar"></span>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-success submitEdit">Salvar alterações</button>
+						<button type="button" class="btn btn-default margin-left" data-dismiss="modal">Fechar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Modal - Show/Hide Columns of contract table -->
+<div class="modal fade" id="hideShowColumnsModal" tabindex="-1" role="dialog" aria-labelledby="modalShowHideColumns">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Escolha as colunas que deseja mostrar / esconder:</h4>
+			</div>
+			<div class="modal-body">
+				<div class="checkbox">
+					<div class="row">
+						<p class="col-lg-6"><label><input type="checkbox" name="checkColumns" ng-click="classData = !classData" checked > Data acordo comercial</label></p>
+
+						<p class="col-lg-6"><label><input type="checkbox" name="checkColumns" ng-click="classNatureza = !classNatureza" checked> Natureza</label></p>
+						
+						<p class="col-lg-6"><label><input type="checkbox" name="checkColumns" ng-click="classComprador = !classComprador" checked> Comprador</label></p>
+						
+						<p class="col-lg-6"><label><input type="checkbox" name="checkColumns" ng-click="classVendedor = !classVendedor"> Vendedor</label></p>
+						
+						<p class="col-lg-6"><label><input type="checkbox" name="checkColumns" ng-click="classEnergiaRef = !classEnergiaRef"> Energia referência</label></p>
+						
+						<p class="col-lg-6"><label><input type="checkbox" name="checkColumns" ng-click="classEnergiaEntre = !classEnergiaEntre"> Energia entregue</label></p>
+						
+						<p class="col-lg-6"><label><input type="checkbox" name="checkColumns" ng-click="classStatus = !classStatus"> Status aprovação</label></p>
+						
+						<p class="col-lg-6"><label><input type="checkbox" name="checkColumns" ng-click="classModelo = !classModelo"> Modelo</label></p>
+						
+						<p class="col-lg-6"><label><input type="checkbox" name="checkColumns" ng-click="classPreco = !classPreco"> Preço base contratado</label></p>
+						
+						<p class="col-lg-6"><label><input type="checkbox" name="checkColumns" ng-click="classSubmercado = !classSubmercado"> Submercado</label></p>
+						
+						<p class="col-lg-6"><label><input type="checkbox" name="checkColumns" ng-click="classInicioForne = !classInicioForne"> Início fornecimento</label></p>
+						
+						<p class="col-lg-6"><label><input type="checkbox" name="checkColumns" ng-click="classFimForne = !classFimForne"> Fim fornecimento</label></p>
+						
+						<p class="col-lg-6"><label><input type="checkbox" name="checkColumns" ng-click="classInicioVige = !classInicioVige"> Início vigência</label></p>
+						
+						<p class="col-lg-6"><label><input type="checkbox" name="checkColumns" ng-click="classFimVige = !classFimVige"> Fim vigência</label></p>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+			</div>
+		</div>
+	</div>
+</div>
