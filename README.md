@@ -10,7 +10,7 @@ Prós
 - Tabela simples porém mostra bem as capacidades do AngularJS de atualizar a view sem recarregar a página.
 
 
-Melhorias
+Melhorias futuras
 --------
 - Não possui backend para fazer os dados persistirem, pretendo melhorar isso usando Ruby on Rails posteriormente.
 
